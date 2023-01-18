@@ -1,18 +1,20 @@
-from convo.main.HandTrackingModule import HandDetector
+from src.convo.utils.handTrackingModule import HandDetector
 import cv2
 import numpy as np
 import math
+import sys
 import time
 
 
 def start():
+    global imgWhite
     cap = cv2.VideoCapture(0)
     detector = HandDetector(maxHands=1)
 
     offset = 20
     imgSize = 300
 
-    folder = "Data"
+    folder = "src/convo/data/FU"
     counter = 0
 
     while True:
@@ -54,3 +56,6 @@ def start():
             counter += 1
             cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
             print(counter)
+
+        if key == ord("q"):
+            sys.exit("Q has been pressed. QUITING PROGRAM")
