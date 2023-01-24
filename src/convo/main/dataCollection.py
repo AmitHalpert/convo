@@ -14,7 +14,7 @@ def start():
     offset = 20
     imgSize = 300
 
-    folder = "src/convo/data/FU"
+    folder = "../data/FU"
     counter = 0
 
     while True:
