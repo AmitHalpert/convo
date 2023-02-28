@@ -14,7 +14,7 @@ def start():
     offset = 20
     imgSize = 300
 
-    folder = "../data/FU"
+    folder = "../data"
     counter = 0
 
     while True:

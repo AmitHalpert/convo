@@ -34,7 +34,7 @@ MANIFEST
 *.spec
 
 # data for model
-data/
+*data/
 
 # Installer logs
 pip-log.txt
