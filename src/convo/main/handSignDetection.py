@@ -1,5 +1,8 @@
-from src.convo.utils.handTrackingModule import HandDetector
-from src.convo.utils.classificationModule import Classifier
+import time
+
+from convo.utils.handTrackingModule import HandDetector
+from convo.utils.classificationModule import Classifier
+import pyautogui
 import sys
 import cv2
 import numpy as np
@@ -41,7 +44,7 @@ def start():
                 wGap = math.ceil((imgSize - wCal) / 2)
                 imgWhite[:, wGap:wCal + wGap] = imgResize
                 prediction, index = classifier.getPrediction(imgWhite, draw=False)
-                print(prediction, index)
+                # print(prediction, index)
 
             else:
                 k = imgSize / w
@@ -61,6 +64,11 @@ def start():
 
             cv2.imshow("ImageCrop", imgCrop)
             cv2.imshow("ImageWhite", imgWhite)
+
+           
+            if labels[index] is not 'FUCK U':
+                pyautogui.write(labels[index], interval=0.25)
+
 
         cv2.imshow("Image", imgOutput)
         key = cv2.waitKey(1)

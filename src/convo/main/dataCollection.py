@@ -1,4 +1,4 @@
-from src.convo.utils.handTrackingModule import HandDetector
+from convo.utils.handTrackingModule import HandDetector
 import cv2
 import numpy as np
 import math

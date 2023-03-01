@@ -55,7 +55,7 @@ def main():
     while True:
         _, img = cap.read()
         predection = maskClassifier.getPrediction(img)
-        print(predection)
+        # print(predection)
         cv2.imshow("Image", img)
         cv2.waitKey(1)
 
