@@ -1,4 +1,4 @@
-# convo
+# convo🤙
 
 
 <p align="center" width="100%">
@@ -6,7 +6,7 @@
 </p>
 
 
-Convo is a sign language messaging app written in python with [Poetry](https://python-poetry.org/) and uses [TensorFlow](https://www.tensorflow.org/), [MediaPipe](https://mediapipe.dev/), [OpenCV](https://opencv.org/)
+a sign language messaging app written in python with [Poetry](https://python-poetry.org/) and uses [TensorFlow](https://www.tensorflow.org/), [MediaPipe](https://mediapipe.dev/), [OpenCV](https://opencv.org/)
 
 
 
