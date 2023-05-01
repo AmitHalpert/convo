@@ -17,4 +17,4 @@ cd convo
 poetry install
 poetry run start
 ```
-remember to use the supported python version ```poetry env use 3.8```
+remember to use the supported python version ```poetry env use 3.11.3```
