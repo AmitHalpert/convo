@@ -33,8 +33,6 @@ MANIFEST
 *.manifest
 *.spec
 
-# data for model
-**/data
 
 # Installer logs
 pip-log.txt

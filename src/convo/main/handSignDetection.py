@@ -1,21 +1,26 @@
-import time
-
 from convo.utils.handTrackingModule import HandDetector
 from convo.utils.classificationModule import Classifier
-import pyautogui
+from pynput.keyboard import Key, Controller
 import sys
 import cv2
+import time
 import numpy as np
 import math
+
+keyboard = Controller()
+
 
 def start():
     cap = cv2.VideoCapture(0)
     detector = HandDetector(maxHands=1)
     classifier = Classifier("../model/keras_model.h5", "../model/labels.txt")
 
+    index = 0
     offset = 20
     imgSize = 300
 
+    LastChar = ""
+    writeDelay = 0
     folder = "../data/C"
     counter = 0
 
@@ -61,14 +66,33 @@ def start():
             cv2.rectangle(imgOutput, (x - offset, y - offset),
                           (x + w + offset, y + h + offset), (255, 0, 255), 4)
 
-
             cv2.imshow("ImageCrop", imgCrop)
             cv2.imshow("ImageWhite", imgWhite)
 
-           
-            if labels[index] is not 'FUCK U':
-                pyautogui.write(labels[index], interval=0.25)
+            writeDelay += time.thread_time()
 
+        if writeDelay >= 700 and LastChar != labels[index]:
+            label = labels[index]
+            keyboard.type(label.lower())
+            LastChar = labels[index]
+            writeDelay = 0
+
+        """
+        if writeDelay >= 700:
+            /*
+            if labels[index] == "A" and LastChar != "a":
+                keyboard.type("a")
+                LastChar = "a"
+                writeDelay = 0
+            elif labels[index] == "B" and LastChar != "b":
+                keyboard.type("b")
+                LastChar = "b"
+                writeDelay = 0
+            elif labels[index] == "C" and LastChar != "c":
+                keyboard.type("c")
+                LastChar = "c"
+                writeDelay = 0
+        """
 
         cv2.imshow("Image", imgOutput)
         key = cv2.waitKey(1)
