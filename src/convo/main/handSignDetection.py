@@ -1,5 +1,5 @@
-from convo.utils.handTrackingModule import HandDetector
-from convo.utils.classificationModule import Classifier
+from src.convo.utils.handTrackingModule import HandDetector
+from src.convo.utils.classificationModule import Classifier
 from pynput.keyboard import Key, Controller
 import sys
 import cv2
@@ -13,7 +13,7 @@ keyboard = Controller()
 def start():
     cap = cv2.VideoCapture(0)
     detector = HandDetector(maxHands=1)
-    classifier = Classifier("../model/keras_model.h5", "../model/labels.txt")
+    classifier = Classifier("../model/keras_model2.h5", "../model/labels2.txt")
 
     index = 0
     offset = 20
@@ -24,7 +24,7 @@ def start():
     folder = "../data/C"
     counter = 0
 
-    labels = ["A", "B", "C", "FUCK U"]
+    labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "O", "P", "Q", "R", "W", "ENTER"]
 
     while True:
         success, img = cap.read()
@@ -71,28 +71,15 @@ def start():
 
             writeDelay += time.thread_time()
 
-        if writeDelay >= 700 and LastChar != labels[index]:
+        # keyboard control
+        if writeDelay >= 700 and LastChar != labels[index] and labels[index] != "ENTER":
             label = labels[index]
             keyboard.type(label.lower())
             LastChar = labels[index]
             writeDelay = 0
-
-        """
-        if writeDelay >= 700:
-            /*
-            if labels[index] == "A" and LastChar != "a":
-                keyboard.type("a")
-                LastChar = "a"
-                writeDelay = 0
-            elif labels[index] == "B" and LastChar != "b":
-                keyboard.type("b")
-                LastChar = "b"
-                writeDelay = 0
-            elif labels[index] == "C" and LastChar != "c":
-                keyboard.type("c")
-                LastChar = "c"
-                writeDelay = 0
-        """
+        elif labels[index] == "ENTER" and writeDelay >= 700:
+            keyboard.press(Key.enter)
+            writeDelay = 0
 
         cv2.imshow("Image", imgOutput)
         key = cv2.waitKey(1)

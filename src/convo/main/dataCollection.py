@@ -1,4 +1,4 @@
-from convo.utils.handTrackingModule import HandDetector
+from src.convo.utils.handTrackingModule import HandDetector
 import cv2
 import numpy as np
 import math
@@ -14,7 +14,7 @@ def start():
     offset = 20
     imgSize = 300
 
-    folder = "../data"
+    folder = "../data/ENTER"
     counter = 0
 
     while True:
